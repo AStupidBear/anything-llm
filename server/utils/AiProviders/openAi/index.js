@@ -90,38 +90,10 @@ class OpenAiLLM {
     return [prompt, ...chatHistory, { role: "user", content: userPrompt }];
   }
 
-  async isSafe(input = "") {
-    const { flagged = false, categories = {} } = await this.openai
-      .createModeration({ input })
-      .then((json) => {
-        const res = json.data;
-        if (!res.hasOwnProperty("results"))
-          throw new Error("OpenAI moderation: No results!");
-        if (res.results.length === 0)
-          throw new Error("OpenAI moderation: No results length!");
-        return res.results[0];
-      })
-      .catch((error) => {
-        throw new Error(
-          `OpenAI::CreateModeration failed with: ${error.message}`
-        );
-      });
-
-    if (!flagged) return { safe: true, reasons: [] };
-    const reasons = Object.keys(categories)
-      .map((category) => {
-        const value = categories[category];
-        if (value === true) {
-          return category.replace("/", " or ");
-        } else {
-          return null;
-        }
-      })
-      .filter((reason) => !!reason);
-
-    return { safe: false, reasons };
+  async isSafe(_ = "") {
+    return { safe: true, reasons: [] };
   }
-
+  
   async sendChat(chatHistory = [], prompt, workspace = {}, rawHistory = []) {
     if (!(await this.isValidChatCompletionModel(this.model)))
       throw new Error(
