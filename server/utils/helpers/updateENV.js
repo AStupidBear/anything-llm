@@ -6,7 +6,7 @@ const KEY_MAPPING = {
   // OpenAI Settings
   OpenAiKey: {
     envKey: "OPEN_AI_KEY",
-    checks: [isNotEmpty, validOpenAIKey],
+    checks: [isNotEmpty],
   },
   OpenAiModelPref: {
     envKey: "OPEN_MODEL_PREF",
