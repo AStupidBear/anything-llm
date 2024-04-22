@@ -30,7 +30,7 @@ function adminEndpoints(app) {
 
   app.get(
     "/admin/users",
-    [validatedRequest, strictMultiUserRoleValid([ROLES.admin, ROLES.manager])],
+    [validatedRequest, strictMultiUserRoleValid([ROLES.admin])],
     async (_request, response) => {
       try {
         const users = (await User.where()).map((user) => {
@@ -47,7 +47,7 @@ function adminEndpoints(app) {
 
   app.post(
     "/admin/users/new",
-    [validatedRequest, strictMultiUserRoleValid([ROLES.admin, ROLES.manager])],
+    [validatedRequest, strictMultiUserRoleValid([ROLES.admin])],
     async (request, response) => {
       try {
         const currUser = await userFromSession(request, response);
@@ -83,7 +83,7 @@ function adminEndpoints(app) {
 
   app.post(
     "/admin/user/:id",
-    [validatedRequest, strictMultiUserRoleValid([ROLES.admin, ROLES.manager])],
+    [validatedRequest, strictMultiUserRoleValid([ROLES.admin])],
     async (request, response) => {
       try {
         const currUser = await userFromSession(request, response);
@@ -124,7 +124,7 @@ function adminEndpoints(app) {
 
   app.delete(
     "/admin/user/:id",
-    [validatedRequest, strictMultiUserRoleValid([ROLES.admin, ROLES.manager])],
+    [validatedRequest, strictMultiUserRoleValid([ROLES.admin])],
     async (request, response) => {
       try {
         const currUser = await userFromSession(request, response);
@@ -218,7 +218,7 @@ function adminEndpoints(app) {
 
   app.get(
     "/admin/workspaces",
-    [validatedRequest, strictMultiUserRoleValid([ROLES.admin, ROLES.manager])],
+    [validatedRequest, strictMultiUserRoleValid([ROLES.admin])],
     async (_request, response) => {
       try {
         const workspaces = await Workspace.whereWithUsers();
@@ -232,7 +232,7 @@ function adminEndpoints(app) {
 
   app.get(
     "/admin/workspaces/:workspaceId/users",
-    [validatedRequest, strictMultiUserRoleValid([ROLES.admin, ROLES.manager])],
+    [validatedRequest, strictMultiUserRoleValid([ROLES.admin])],
     async (request, response) => {
       try {
         const { workspaceId } = request.params;
@@ -266,7 +266,7 @@ function adminEndpoints(app) {
 
   app.post(
     "/admin/workspaces/:workspaceId/update-users",
-    [validatedRequest, strictMultiUserRoleValid([ROLES.admin, ROLES.manager])],
+    [validatedRequest, strictMultiUserRoleValid([ROLES.admin])],
     async (request, response) => {
       try {
         const { workspaceId } = request.params;
@@ -285,7 +285,7 @@ function adminEndpoints(app) {
 
   app.delete(
     "/admin/workspaces/:id",
-    [validatedRequest, strictMultiUserRoleValid([ROLES.admin, ROLES.manager])],
+    [validatedRequest, strictMultiUserRoleValid([ROLES.admin])],
     async (request, response) => {
       try {
         const { id } = request.params;
@@ -317,7 +317,7 @@ function adminEndpoints(app) {
   // TODO: Allow specification of which props to get instead of returning all of them all the time.
   app.get(
     "/admin/system-preferences",
-    [validatedRequest, flexUserRoleValid([ROLES.admin, ROLES.manager])],
+    [validatedRequest, flexUserRoleValid([ROLES.admin])],
     async (_, response) => {
       try {
         const settings = {
@@ -367,7 +367,7 @@ function adminEndpoints(app) {
 
   app.post(
     "/admin/system-preferences",
-    [validatedRequest, flexUserRoleValid([ROLES.admin, ROLES.manager])],
+    [validatedRequest, flexUserRoleValid([ROLES.admin])],
     async (request, response) => {
       try {
         const updates = reqBody(request);
