@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 // Providers which cannot use this feature for workspace<>model selection
 export const DISABLED_PROVIDERS = ["azure", "lmstudio", "native"];
 const PROVIDER_DEFAULT_MODELS = {
-  openai: [],
+  openai: ["gpt-4", "gpt-3.5-turbo"],
   gemini: ["gemini-pro", "gemini-1.5-pro-latest"],
   anthropic: [
     "claude-instant-1.2",
@@ -19,7 +19,7 @@ const PROVIDER_DEFAULT_MODELS = {
   localai: [],
   ollama: [],
   togetherai: [],
-  groq: ["llama2-70b-4096", "mixtral-8x7b-32768"],
+  groq: ["llama3-70b-8192", "mixtral-8x7b-32768"],
   native: [],
 };
 

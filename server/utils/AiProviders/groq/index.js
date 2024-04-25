@@ -14,7 +14,7 @@ class GroqLLM {
 
     this.openai = new OpenAIApi(config);
     this.model =
-      modelPreference || process.env.GROQ_MODEL_PREF || "llama2-70b-4096";
+      modelPreference || process.env.GROQ_MODEL_PREF || "llama3-70b-8192";
     this.limits = {
       history: this.promptWindowLimit() * 0.15,
       system: this.promptWindowLimit() * 0.15,
@@ -43,8 +43,8 @@ class GroqLLM {
 
   promptWindowLimit() {
     switch (this.model) {
-      case "llama2-70b-4096":
-        return 4096;
+      case "llama3-70b-8192":
+        return 8192;
       case "mixtral-8x7b-32768":
         return 32_768;
       default:
@@ -53,7 +53,7 @@ class GroqLLM {
   }
 
   async isValidChatCompletionModel(modelName = "") {
-    const validModels = ["llama2-70b-4096", "mixtral-8x7b-32768"];
+    const validModels = ["llama3-70b-8192", "mixtral-8x7b-32768"];
     const isPreset = validModels.some((model) => modelName === model);
     if (isPreset) return true;
 
