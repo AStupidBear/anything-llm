@@ -138,7 +138,7 @@ export default function App() {
                 {/* Manager */}
                 <Route
                   path="/settings/security"
-                  element={<ManagerRoute Component={GeneralSecurity} />}
+                  element={<AdminRoute Component={GeneralSecurity} />}
                 />
                 <Route
                   path="/settings/privacy"
@@ -146,7 +146,7 @@ export default function App() {
                 />
                 <Route
                   path="/settings/appearance"
-                  element={<ManagerRoute Component={GeneralAppearance} />}
+                  element={<AdminRoute Component={GeneralAppearance} />}
                 />
                 <Route
                   path="/settings/beta-features"
@@ -170,7 +170,7 @@ export default function App() {
                 />
                 <Route
                   path="/settings/users"
-                  element={<ManagerRoute Component={AdminUsers} />}
+                  element={<AdminRoute Component={AdminUsers} />}
                 />
                 <Route
                   path="/settings/workspaces"
